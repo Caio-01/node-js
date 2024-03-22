@@ -33,7 +33,7 @@ describe("Star Wars Tests", function () {
       ],
     };
 
-    //Configurando o mock para a requisição da API
+    //Configurando o nock para a requisição da API
     nock("https://swapi.dev/api/people")
       .get("/?search=r2-d2&format=json")
       .reply(200, response);
