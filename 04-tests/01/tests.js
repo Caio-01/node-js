@@ -8,7 +8,7 @@ const nock = require("nock");
 describe("Star Wars Tests", function () {
   //Antes de executar qualquer teste individual ('it'), ele vai executar essa tarefa:
   this.beforeAll(() => {
-    //Definindo uma resposata simulada para a solicitação da API que busca o personagem 
+    //Definindo uma resposta simulada para a solicitação da API que busca o personagem 
     const response = {
       count: 1,
       next: null,
