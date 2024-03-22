@@ -1,13 +1,14 @@
-const assert = require("assert"); //Modulo de assercao
-const { obterPessoas } = require("./service"); //Modulo de service
+const assert = require("assert"); //Módulo de 'assert' para asserções
+const { obterPessoas } = require("./service"); //Importando a função 'obterPessoas' do módulo './service'
 
-//Instalando o pacote nock, para simular requisicoes
+//Instalando o pacote 'nock', para simular requisições HTTP
 const nock = require("nock");
 
-//Para comecar com o Mocha
+//Iniciando o conjunto de testes com o Mocha
 describe("Star Wars Tests", function () {
-  //Antes de entrar no 'it', ele vai executar essa tarefa:
+  //Antes de executar qualquer teste individual ('it'), ele vai executar essa tarefa:
   this.beforeAll(() => {
+    //Definindo uma resposata simulada para a solicitação da API que busca o personagem 
     const response = {
       count: 1,
       next: null,
@@ -32,17 +33,24 @@ describe("Star Wars Tests", function () {
       ],
     };
 
+    //Configurando o mock para a requisição da API
     nock("https://swapi.dev/api/people")
       .get("/?search=r2-d2&format=json")
       .reply(200, response);
   });
 
-  //Definindo os testes que vao rodar
+  //Definindo o caso de teste
   it("deve buscar o r2d2 com o formato correto", async () => {
-    const expected = [{ nome: "R2-D2", peso: "96" }]; //Definindo o esperado
+    //Definindo o Resultado esperado
+    const expected = [{ nome: "R2-D2", peso: "96" }];
+
+    //Definindo o nome para a busca
     const nomeBase = "r2-d2";
 
+    //Chamando a função 'obterPessoas' como o 'nomeBase'
     const resultado = await obterPessoas(nomeBase);
-    assert.deepEqual(resultado, expected); //Teste
+
+    //Teste => verificando se o resultado é igual ao esperado
+    assert.deepEqual(resultado, expected);
   });
 });
