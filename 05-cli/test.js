@@ -10,6 +10,9 @@ const DEFAULT_ITEM_CADASTAR = {
 
 //Iniciando o conjunto de testes com o Mocha
 describe("Suite de manipulação de herois", () => {
+  before(async () => {
+    await dataBase.cadastrar(DEFAULT_ITEM_CADASTAR);
+  });
   //Definindo o caso de teste
   it("deve pesquisar um heroi usando arquivos", async () => {
     const expected = DEFAULT_ITEM_CADASTAR;
@@ -18,10 +21,11 @@ describe("Suite de manipulação de herois", () => {
     deepEqual(resultado, expected);
   });
 
-  //   it("deve cadastar um heroi, usando arquivos", async () => {
-  //     //Definindo o esperado
-  //     const expected = DEFAULT_ITEM_CADASTAR;
-  //     //
-  //     ok(null, expected);
-  //   });
+  it("deve cadastar um heroi, usando arquivos", async () => {
+    //Definindo o caso de teste
+    const expected = DEFAULT_ITEM_CADASTAR;
+    const resultado = await dataBase.cadastrar(DEFAULT_ITEM_CADASTAR);
+    const [actual] = await dataBase.listar(DEFAULT_ITEM_CADASTAR.id);
+    deepEqual(actual, expected);
+  });
 });
