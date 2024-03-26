@@ -29,4 +29,11 @@ describe("Suite de manipulação de herois", () => {
     const [actual] = await dataBase.listar(DEFAULT_ITEM_CADASTAR.id); //Listando o herói com o ID padrão
     deepEqual(actual, expected); //Verificando se o resultado é igual ao esperado
   });
+
+  //Teste: deve remover um herói, usando arquivos
+  it("deve remover o herói por id", async () => {
+    const expected = true;
+    const resultado = await dataBase.remover(DEFAULT_ITEM_CADASTAR.id); //Removendo o herói com o ID padrão
+    deepEqual(resultado, expected); //Verificando se o resultado é igual ao esperado
+  });
 });

@@ -49,6 +49,21 @@ class Database {
     const dadosFiltrados = dados.filter((item) => (id ? item.id === id : true)); //Filtrando dados com base no ID fornecido
     return dadosFiltrados; //Retornando os dados Filtrados
   }
+
+  //Método para remover dados
+  async remover(id) {
+    if (!id) {
+      return await this.escreverArquivo([]); //Se não passar nenhum id, escreverArquivo vai receber um Array vazio
+    }
+
+    const dados = await this.obterDadosArquivos(); //Obtendo os dados atuais do arquivo
+    const indice = dados.findIndex((item) => item.id === parseInt(id)); //Localizar o indice do item com o ID fornecido
+    if (indice === -1) {
+      throw Error("O usuário informado não existe");
+    }
+    dados.splice(indice, 1); //Removendo o item do array de dados
+    return await this.escreverArquivo(dados); //Retornando os dados atualizados no arquivo
+  }
 }
 
 module.exports = new Database(); //Exportando uma instância da classe "Database"
