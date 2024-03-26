@@ -2,8 +2,9 @@ const { readFile, writeFile } = require("fs"); //Importando a função "readFile
 
 const { promisify } = require("util"); //Importando a função "promisify" do módulo "util"
 
-const readFileAsync = promisify(readFile); //Criando uma versão promissificada da função "readFile"
-const writeFileAsync = promisify(writeFile); //Criando uma versão promissificada da função "writeFile"
+//Criando uma versão promissificada da função "readFile" e "writeFile"
+const readFileAsync = promisify(readFile);
+const writeFileAsync = promisify(writeFile);
 
 //Outra forma de obter dados do JSON
 //const dadosJson = require('./herois.json')
@@ -20,25 +21,25 @@ class Database {
     return JSON.parse(arquivo.toString());
   }
 
-  //Método para
+  //Método para escrever dados no arquivo
   async escreverArquivo(dados) {
     await writeFileAsync(this.NOME_ARQUIVO, JSON.stringify(dados)); //Salvando os novos dados
     return true;
   }
 
-  //Método para cadastrar o heroi
+  //Método para cadastrar o herói
   async cadastrar(heroi) {
-    const dados = await this.obterDadosArquivos(); //
-    const id = heroi.id <= 2 ? heroi.id : Date.now();
+    const dados = await this.obterDadosArquivos(); //Obtendo os dados atuais do arquivo
+    const id = heroi.id <= 2 ? heroi.id : Date.now(); //Gerando um novo ID para o herói (se o ID fornecido for maior que 2, usa o timestamp atual)
 
     const heroiComId = {
       id,
       ...heroi,
-    }; // Concatenando o id gerado e com o objeto que veio de heroi
+    }; // Concatenando um objeto com o ID gerado e os dados do herói
 
-    const dadosFinal = [...dados, heroiComId];
+    const dadosFinal = [...dados, heroiComId]; //Concatenando o novo herói com os dados existentes
 
-    const resultado = await this.escreverArquivo(dadosFinal);
+    const resultado = await this.escreverArquivo(dadosFinal); //Salvando os dados atualizados no arquivo
     return resultado;
   }
 

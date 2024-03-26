@@ -10,22 +10,23 @@ const DEFAULT_ITEM_CADASTAR = {
 
 //Iniciando o conjunto de testes com o Mocha
 describe("Suite de manipulação de herois", () => {
+  //Antes de cada teste, cadastra um herói padrão
   before(async () => {
     await dataBase.cadastrar(DEFAULT_ITEM_CADASTAR);
   });
-  //Definindo o caso de teste
+  //Teste: deve pesquisar um herói usando arquivos
   it("deve pesquisar um heroi usando arquivos", async () => {
     const expected = DEFAULT_ITEM_CADASTAR;
-    const [resultado] = await dataBase.listar(expected.id); //Listando o usuário com o id específico
+    const [resultado] = await dataBase.listar(expected.id); //Listando o herói com o id específico
 
-    deepEqual(resultado, expected);
+    deepEqual(resultado, expected); //Verificando se o resultado é igual ao esperado
   });
 
+  //Teste: deve cadastrar um herói, usando arquivos
   it("deve cadastar um heroi, usando arquivos", async () => {
-    //Definindo o caso de teste
     const expected = DEFAULT_ITEM_CADASTAR;
-    const resultado = await dataBase.cadastrar(DEFAULT_ITEM_CADASTAR);
-    const [actual] = await dataBase.listar(DEFAULT_ITEM_CADASTAR.id);
-    deepEqual(actual, expected);
+    const resultado = await dataBase.cadastrar(DEFAULT_ITEM_CADASTAR); //Cadastrando o herói padrão
+    const [actual] = await dataBase.listar(DEFAULT_ITEM_CADASTAR.id); //Listando o herói com o ID padrão
+    deepEqual(actual, expected); //Verificando se o resultado é igual ao esperado
   });
 });
