@@ -1,16 +1,1 @@
-[
-  { "id": 1, "nome": "Flash", "poder": "Speed" },
-  { "id": 1, "nome": "Flash", "poder": "Speed" },
-  { "id": 1, "nome": "Flash", "poder": "Speed" },
-  { "id": 1, "nome": "Flash", "poder": "Speed" },
-  { "id": 1, "nome": "Flash", "poder": "Speed" },
-  { "id": 2, "nome": "Batman", "poder": "Luta" },
-  { "id": 1, "nome": "Flash", "poder": "Speed" },
-  { "id": 2, "nome": "Superman", "poder": "Voar" },
-  { "id": 1, "nome": "Flash", "poder": "Speed" },
-  { "id": 2, "nome": "Batman", "poder": "Luta" },
-  { "id": 1, "nome": "Flash", "poder": "Speed" },
-  { "id": 2, "nome": "Superman", "poder": "Voar" },
-  { "id": 1, "nome": "Flash", "poder": "Speed" },
-  { "id": 2, "nome": "Batman", "poder": "Luta" }
-]
+[{"id":1711570443218,"nome":"Homem","poder":"armadura"},{"id":1711570782917,"nome":"Miranha","poder":"Sentindo Aranha"}]

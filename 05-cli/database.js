@@ -16,19 +16,19 @@ class Database {
     this.NOME_ARQUIVO = "herois.json"; //Definindo o nome do arquivo JSON a ser usado
   }
 
-  //Método para obter dados do arquivo
+  //Método para Obter dados do arquivo
   async obterDadosArquivos() {
     const arquivo = await readFileAsync(this.NOME_ARQUIVO, "utf8"); //Obtendo tudo que tem nesse arquivo => NOME_ARQUIVO
     return JSON.parse(arquivo.toString());
   }
 
-  //Método para escrever dados no arquivo
+  //Método para Escrever dados no arquivo
   async escreverArquivo(dados) {
     await writeFileAsync(this.NOME_ARQUIVO, JSON.stringify(dados)); //Salvando os novos dados
     return true;
   }
 
-  //Método para cadastrar o herói
+  //Método para Cadastrar o herói
   async cadastrar(heroi) {
     const dados = await this.obterDadosArquivos(); //Obtendo os dados atuais do arquivo
     const id = heroi.id <= 2 ? heroi.id : Date.now(); //Gerando um novo ID para o herói (se o ID fornecido for maior que 2, usa o timestamp atual)
@@ -44,14 +44,14 @@ class Database {
     return resultado;
   }
 
-  //Método para listar dados (filtrados por ID, se fornecido)
+  //Método para Listar dados (filtrados por ID, se fornecido)
   async listar(id) {
     const dados = await this.obterDadosArquivos(); //Obtendo dados do arquivo
     const dadosFiltrados = dados.filter((item) => (id ? item.id === id : true)); //Filtrando dados com base no ID fornecido
     return dadosFiltrados; //Retornando os dados Filtrados
   }
 
-  //Método para remover dados
+  //Método para Remover dados
   async remover(id) {
     if (!id) {
       return await this.escreverArquivo([]); //Se não passar nenhum id, escreverArquivo vai receber um Array vazio
@@ -66,6 +66,7 @@ class Database {
     return await this.escreverArquivo(dados); //Retornando os dados atualizados no arquivo
   }
 
+  //Método para Atualizar dados
   async atualizar(id, modificacoes) {
     const dados = await this.obterDadosArquivos(); //Obtendo os dados atuais do arquivo
     const indice = dados.findIndex((item) => item.id === parseInt(id)); //Localizar o indice do item com o ID fornecido
