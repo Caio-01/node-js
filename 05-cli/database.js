@@ -1,4 +1,5 @@
 const { readFile, writeFile } = require("fs"); //Importando a função "readFile" do módulo "fs"
+const { waitForDebugger } = require("inspector");
 
 const { promisify } = require("util"); //Importando a função "promisify" do módulo "util"
 
@@ -59,10 +60,29 @@ class Database {
     const dados = await this.obterDadosArquivos(); //Obtendo os dados atuais do arquivo
     const indice = dados.findIndex((item) => item.id === parseInt(id)); //Localizar o indice do item com o ID fornecido
     if (indice === -1) {
-      throw Error("O usuário informado não existe");
+      throw Error("O herói informado não existe");
     }
     dados.splice(indice, 1); //Removendo o item do array de dados
     return await this.escreverArquivo(dados); //Retornando os dados atualizados no arquivo
+  }
+
+  async atualizar(id, modificacoes) {
+    const dados = await this.obterDadosArquivos(); //Obtendo os dados atuais do arquivo
+    const indice = dados.findIndex((item) => item.id === parseInt(id)); //Localizar o indice do item com o ID fornecido
+    if (indice === -1) {
+      throw Error("O herói informado não existe");
+    }
+
+    const atual = dados[indice]; //Obtendo o objeto atual
+
+    const objetoAtualizar = {
+      ...atual,
+      ...modificacoes,
+    }; //Criando um novo objeto com as modificações
+
+    dados.splice(indice, 1); //Removendo o item antigo da lista
+
+    return await this.escreverArquivo([...dados, objetoAtualizar]); //Retornando o arquivo com os dados atualizados
   }
 }
 
