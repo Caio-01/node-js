@@ -1,5 +1,4 @@
 const { readFile, writeFile } = require("fs"); //Importando a função "readFile" do módulo "fs"
-const { waitForDebugger } = require("inspector");
 
 const { promisify } = require("util"); //Importando a função "promisify" do módulo "util"
 
