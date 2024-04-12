@@ -1,7 +1,7 @@
 const { deepEqual, ok } = require("assert"); // Importando metodo deepEqual, ok do módulo assert
 
 const dataBase = require("./database"); //Importando o dataBase
-const database = require("./database");
+
 
 const DEFAULT_ITEM_CADASTAR = {
   nome: "Flash",
